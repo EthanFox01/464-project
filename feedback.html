@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="scripts/feedbackProcess.js"></script>
+        <h1 class="Header" id="second_header">464 Project</h1>
+        <ul>
+            <li><a href="home-page.html">Home</a></li>
+            <li><a href="upload-page.html">Upload</a></li>
+            <li><a class="active_tab" href="">Feedback</a></li>
+            <li style="float:right"><a href="">About</a></li>
+        </ul>
+    </head>
+    <body>
+        <form id="feedback_form" onsubmit="feedbackProcess()">
+            <div class="radio_rating">
+                <label>Please give a rating for the site: </label>
+                <label>
+                    <input type="radio" name="rating" value="1">1
+                </label>
+                <label>
+                    <input type="radio" name="rating" value="2">2
+                </label>
+                <label>
+                    <input type="radio" name="rating" value="3">3
+                </label>
+                <label>
+                    <input type="radio" name="rating" value="4">4
+                </label>
+                <label>
+                    <input type="radio" name="rating" value="5">5
+                </label>
+            </div>
+
+            <div style="margin:8px 0px 8px 0px">
+                <label>Please provide any comments you have about the site:</label><br>
+                <textarea
+                    id="comments" name="comments" rows="5" cols="40"
+                ></textarea>
+            </div>
+
+            <div style="margin:8px 0px 8px 0px">
+                <label>Enter your email: </label>
+                <input id="email" type="text" name="email" size="40">
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
