@@ -1,0 +1,41 @@
+.Header {
+    color: crimson;
+}
+
+.home_flex_container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.flex_item {
+    margin: 8px;
+}
+
+p {
+    font-family: 'Courier New', Courier, monospace;
+    color: #c7d5e0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #1b2838;
+}
+
+input{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small;
+}
+ul li {
+    font-family: 'Courier New', Courier, monospace; 
+    margin: 4px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 12px;
+}
