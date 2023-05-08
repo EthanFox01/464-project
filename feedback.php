@@ -2,15 +2,25 @@
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="styles.css">
-        <script src="scripts/feedbackProcess.js"></script>
+        <script src="scripts/toggleModes.js"></script>
     </head>
-    <body>
-        <h1 class="Header" id="second_header">464 Project</h1>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="upload.html">Upload</a></li>
-            <li><a class="active_tab" href="">Feedback</a></li>
-            <li style="float:right"><a href="">About</a></li>
+    <body class="dark_mode">
+        <h1 class="Header" id="first_header">464 Project</h1>
+        <ul id="na">
+            <li><a class="dark_mode active_tab" href="index.php">Home</a></li>
+            <li><a class="dark_mode" href="upload.php">Upload</a></li>
+            <li><a class="dark_mode" href="feedback.php">Feedback</a></li>
+            <!-- <li style="float:right"><a class="dark_mode" href="">About</a></li>
+            <li style="float:right">
+                <div class="dropdown">
+                    <a id="mode_dropdown" class="dark_mode">Dark Mode</a>
+                    <div class="dropdown_content">
+                        <a class="dark_mode" onclick="setLightMode()">Light Mode</a>
+                        <a class="dark_mode" onclick="setDarkMode()">Dark Mode</a>
+                        <a class="dark_mode" onclick="setOLEDMode()">OLED Mode</a>
+                    </div>
+                </div>
+            </li> -->
         </ul>
         <form id="feedback_form" onsubmit="feedbackProcess()">
             <div class="radio_rating">
