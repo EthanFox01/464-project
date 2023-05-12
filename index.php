@@ -3,22 +3,13 @@ session_start();
 
 function checkNameState()
 {
-    if(!isset($_SESSION['name']))
-    {   
-        echo "Ethan";
-    } else {
-        echo $_SESSION['name'];
+    if (!isset($_SESSION['name'])) {
+        $_SESSION['name'] = "Ethan";
     }
-}
-
-
-if ($_SERVER['REQUEST_METHOD'] == $_POST)
-{
-    $_SESSION['name'] = $_POST['name'];
     echo $_SESSION['name'];
 }
 
-function pullImages()
+function pullImages($name)
 {
     $servername = "localhost";
     $username = "root";
@@ -29,7 +20,8 @@ function pullImages()
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-    $query = $conn->query("SELECT * FROM images WHERE user=".$_SESSION['name']." ORDER BY id DESC");
+
+    $query = $conn->query("SELECT * FROM images WHERE user=\"" . $name . "\" ORDER BY id DESC");
 
     if ($query->num_rows > 0) {
         while ($row = $query->fetch_assoc()) {
@@ -66,28 +58,37 @@ function pullImages()
         <li><a class="dark_mode" href="feedback.php">Feedback</a></li>
         <li style="float:right">
             <div class="dropdown">
-                <!-- <button class="dropbtn"><?php checkNameState()?></button> -->
-                <button class="dropbtn">Log In</button>
+                <button id="dropbtn" class="dropbtn">
+                    <?php checkNameState() ?>
+                </button>
                 <div class="dropdown-content">
-                    <button class="dark_mode dropbtn" onclick="handleUserSelection('Ethan')" >Ethan</button>
-                    <button class="dark_mode dropbtn"onclick="handleUserSelection('Mike')">Mike</button>
-                    <button class="dark_mode dropbtn" >+ Add New User</button>
+                    <button class="dark_mode dropbtn" onclick="handleUserSelection('Ethan')">Ethan</button>
+                    <button class="dark_mode dropbtn" onclick="handleUserSelection('Demo User')">Demo User</button>
                 </div>
             </div>
         </li>
     </ul>
-    <div class="home_flex_container">
-        <?php pullImages() ?>
+    <div id="image_div" class="home_flex_container">
+        <?php pullImages($_SESSION['name']) ?>
     </div>
 
     <script>
         function handleUserSelection(name) {
-            console.log(name);
             var message = name;
-            var url = "index.php?name=" + name;
+            var url = "users.php";
+            var params = "name=" + name;
             request = new XMLHttpRequest();
+            request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200) {
+                    var dropbtn = document.getElementById("dropbtn");
+                    response = request.responseText;
+                    dropbtn.innerHTML = response;
+                    window.location = window.location;
+                }
+            }
             request.open("POST", url, true);
-            request.send(JSON.stringify({name: name}));
+            request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            request.send(params);
         }
     </script>
 </body>
